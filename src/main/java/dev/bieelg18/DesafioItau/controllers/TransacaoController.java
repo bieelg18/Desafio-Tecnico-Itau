@@ -35,7 +35,7 @@ public class TransacaoController implements TransacaoControllerDocs {
 
     //Rota para trazer as estatisticas das transações
     @Override
-    @GetMapping("/transacao")
+    @GetMapping("/estatistica")
     public EstatisticaDTO estatisticas(){
         return service.estatisticas();
     }
