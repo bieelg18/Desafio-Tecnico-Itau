@@ -1,5 +1,6 @@
 package dev.bieelg18.DesafioItau.controllers;
 
+import dev.bieelg18.DesafioItau.docs.TransacaoControllerDocs;
 import dev.bieelg18.DesafioItau.dto.EstatisticaDTO;
 import dev.bieelg18.DesafioItau.objects.Transacao;
 import dev.bieelg18.DesafioItau.services.TransacaoService;
@@ -13,11 +14,12 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping
-public class TransacaoController {
+public class TransacaoController implements TransacaoControllerDocs {
 
     private final TransacaoService service;
 
     //Rota para criar uma transação
+    @Override
     @PostMapping("/transacao")
     public ResponseEntity<Void> criarTransacao(@RequestBody Transacao transacao){
         service.criarTransacao(transacao);
@@ -25,22 +27,17 @@ public class TransacaoController {
     }
 
     //Rota para deletar todas as transacoes
+    @Override
     @DeleteMapping("/transacao")
     public void deletarTransacao(){
         service.deletarTransacoes();
     }
 
     //Rota para trazer as estatisticas das transações
+    @Override
     @GetMapping("/transacao")
     public EstatisticaDTO estatisticas(){
         return service.estatisticas();
-    }
-
-    //Rota para adicionar varias transações ao mesmo tempo
-    @PostMapping("/lote")
-    public ResponseEntity<Void> criarEmLote(@RequestBody List<Transacao> transacoes){
-        transacoes.forEach(service::criarTransacao);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 }
