@@ -18,4 +18,10 @@ public class TransacaoController {
         service.criarTransacao(transacao);
     }
 
+    //Rota para deletar todas as transacoes
+    @DeleteMapping("/transacao")
+    public void deletarTransacao(){
+        service.deletarTransacoes();
+    }
+
 }
