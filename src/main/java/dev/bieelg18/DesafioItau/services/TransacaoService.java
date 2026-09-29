@@ -71,4 +71,8 @@ public class TransacaoService {
 
     }
 
+    public int quantidadeTransacoes(){
+        return transacoes.size();
+    }
+
 }
